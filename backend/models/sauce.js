@@ -19,4 +19,4 @@ const sauceSchema = mongoose.Schema({
 
 
 
-module.exports = mongoose.model('User', sauceSchema);
+module.exports = mongoose.model('Sauce', sauceSchema);
