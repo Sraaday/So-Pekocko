@@ -1,9 +1,11 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-const app = express();
 
+const app = express();
+const bodyParser = require('body-parser');
+const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
+const path = require('path');
 
 mongoose.connect('mongodb+srv://Test:0pb5YGVlCxeXGu29@cluster0.uwakm.mongodb.net/Projet_6?retryWrites=true&w=majority',
     {
@@ -12,6 +14,10 @@ mongoose.connect('mongodb+srv://Test:0pb5YGVlCxeXGu29@cluster0.uwakm.mongodb.net
     })
     .then(() => console.log('Connexion à MongoDB réussie !'))
     .catch((error) => console.log('Connexion à MongoDB échouée !', error));
+    
+    
+    
+
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,6 +27,9 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json());
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
+
 
 module.exports = app;
