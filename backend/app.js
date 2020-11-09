@@ -6,8 +6,12 @@ const bodyParser = require('body-parser');
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 const path = require('path');
+const helmet = require('helmet');
+require('dotenv').config();
 
-mongoose.connect('mongodb+srv://Test:0pb5YGVlCxeXGu29@cluster0.uwakm.mongodb.net/Projet_6?retryWrites=true&w=majority',
+app.use(helmet());
+
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@${process.env.DB_HOST}.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`,
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
