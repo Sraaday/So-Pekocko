@@ -8,7 +8,7 @@ const like = require('../middleware/like');
 const sauceCtrl = require('../controllers/sauce');
 
 
-
+// Toutes les routes concernants les sauces sont sécurisées via auth et les images sont gérées grâce à multer
 router.post('/', auth, multer, sauceCtrl.createSauce);
 router.get('/',auth, sauceCtrl.getAllSauce);
 router.get('/:id', auth, sauceCtrl.getOneSauce);
